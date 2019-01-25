@@ -1,0 +1,65 @@
+<div class="container-fluid pt-5 mt-5">
+  <!--Jumbotron-->
+  <div class="row">
+    <div class="col-lg-2">
+      <div class="card card-outline card-warning">
+        <div class="card-header">
+          <h3 class="card-title text-center">Gestión</h3>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item" [routerLink]="['/misVuelos/vuelosActuales']" routerLinkActive="active"><i
+              class="fa fa-suitcase"></i> Mis viajes programados
+            </li>
+            <li class="list-group-item" [routerLink]="['/misVuelos/vuelosPasados']" routerLinkActive="active">Mis viajes
+              anteriores
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!--<div class="container">
+  <div class="row ">
+    <div class="col-12 text-center">
+      <h1>Bienvenid@ {{peticion.usuario.nombreUsuario}} ¿Listo para viajar?</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>Aquí tienes los vuelos disponibles.</h1>
+    </div>
+    <ol class="lista-vuelos">
+      <li *ngFor="let vuelo of vuelos">
+
+        <div class="card">
+
+
+          <img class="card-img-top" src="../../../assets/img/nueva-york" alt="Card image cap">
+
+
+          <div class="card-body">
+
+
+            <h4 class="card-title"><a>Card title</a></h4>
+
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+
+            <a href="#" class="btn btn-primary">Button</a>
+
+          </div>
+
+        </div>
+
+      </li>
+    </ol>
+  </div>
+</div>-->
+

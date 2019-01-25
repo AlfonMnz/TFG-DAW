@@ -1,0 +1,166 @@
+<div class="row">
+  <div class="col-12 col-md-4">
+    <div class="info-box">
+      <span class="info-box-icon bg-info">
+        <i class="fa fa-suitcase" aria-hidden="true"></i>
+      </span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total vuelos</span>
+        <span class="info-box-number">{{vuelos.length}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4">
+    <div class="info-box">
+      <span class="info-box-icon bg-info">
+        <i class="fa fa-spin fa-suitcase" aria-hidden="true"></i>
+      </span>
+      <div class="info-box-content">
+        <span class="info-box-text">Vuelos pasados</span>
+        <span class="info-box-number">{{vuelosPasados.length}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4">
+    <div class="info-box">
+      <span class="info-box-icon bg-info">
+        <i class="fa fa-pulse fa-suitcase" aria-hidden="true"></i>
+      </span>
+      <div class="info-box-content">
+        <span class="info-box-text">Vuelos presentes</span>
+        <span class="info-box-number">{{vuelosPresentes.length}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-info card-outline">
+      <div class="card-header">
+        <h3 class="card-title"><i class="fa fa-tab"></i> Eventos</h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-toggle="modal" data-target="#exampleModalCenter">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Evento</th>
+            <th scope="col">Salida</th>
+            <th scope="col">Destino</th>
+            <th scope="col">Fecha de Salida</th>
+            <th scope="col">Fecha de Llegada</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let evento of eventos | paginate: {itemsPerPage: 10,currentPage:p}">
+            <th>
+              <span class={{evento.claseSpam}}>
+                <i class={{evento.claseArrow}}></i>{{evento.evento}}
+              </span>
+            </th>
+            <td>
+              {{evento.salida}}
+            </td>
+            <td>
+              {{evento.destino}}
+            </td>
+            <td>
+              {{evento.fechaSalida}}
+            </td>
+            <td>
+              {{evento.fechaLlegada}}
+            </td>
+          </tr>
+          </tbody>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-info card-outline">
+      <div class="card-header">
+        <h3 class="card-title">Vuelos Pendientes</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group" *ngFor="let pendiente of vuelosPendientes">
+          <li class="list-group-item">
+            <p>Salida: {{pendiente.Origen}}</p>
+            <p>Destino: {{pendiente.Destino}}</p>
+            <p>Fecha Salida: {{pendiente.HoraSalida}}</p>
+            <p>Fecha Llegada: {{pendiente.HoraLlegada}}</p>
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Añadir Vuelo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label for="aerolinea" class="grey-text">Selecciona Aerolínea</label>
+          <select [(ngModel)]="idAerolineaSeleccionada" [ngModelOptions]="{standalone:true}" (change)="cambiarAviones()"
+                  class="form-control" name="" id="aerolinea">
+            <option value={{aerolinea.idAerolinea}}
+                    *ngFor="let aerolinea of aerolineas">
+              {{aerolinea.nombreAerolinea}}
+            </option>
+          </select>
+
+          <br>
+          <label for="aviones" class="grey-text">Selecciona Avión</label>
+          <select (change)="cambiarAsientos()" class="form-control" [(ngModel)]="idAvionSeleccionado"
+                  [ngModelOptions]="{standalone:true}"
+                  name=""
+                  id="aviones">
+            <option value={{avion.idAvion}} *ngFor="let avion of avionesMostrando">
+              {{avion.idAvion}}
+            </option>
+          </select>
+
+          <br>
+
+          <label for="precio" class="grey-text">Precio</label>
+          <input class="form-control" [(ngModel)]="precio" [ngModelOptions]="{standalone:true}" type="number"
+                 id="precio">
+          <label for="asientos" class="grey-text">Asientos</label>
+          <input [(ngModel)]="asientos" [ngModelOptions]="{standalone:true}" type="text" id="asientos"
+                 disabled value={{asientos}} class="form-control">
+          <label for="Salida" class="grey-text">Salida</label>
+          <input class="form-control" [(ngModel)]="salida" [ngModelOptions]="{standalone:true}" type="text" id="Salida">
+          <label for="llegada" class="grey-text">Llegada</label>
+          <input class="form-control" [(ngModel)]="llegada" [ngModelOptions]="{standalone:true}" type="text"
+                 id="llegada">
+          <label for="fecha_salida" class="grey-text">Fecha de salida</label>
+          <input class="form-control" [(ngModel)]="fecha_salida" [ngModelOptions]="{standalone:true}" type="date"
+                 id="fecha_salida">
+          <label for="fecha_llegada" class="grey-text">fecha de llegada</label>
+          <input class="form-control" [(ngModel)]="fecha_llegada" [ngModelOptions]="{standalone:true}" type="date"
+                 id="fecha_llegada">
+
+          <div class="text-center mt-4">
+            <button class="btn btn-indigo" (click)="crearVuelo()" data-dismiss="modal" type="submit">Añadir Vuelo
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

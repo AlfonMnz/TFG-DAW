@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-info">
+        <i class="fa fa-plane"></i>
+      </span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total Aviones</span>
+        <span class="info-box-number">{{aviones.length}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-info card-outline" *ngFor="let aerolinea of aerolineas">
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fa fa-tab"></i>
+          {{aerolinea.nombreAerolinea}}
+        </h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-toggle="modal" data-target="#exampleModalCenter">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let avion of avionesporAerolineas[aerolinea.idAerolinea]">
+            <p>Id Avion: {{avion.idAvion}}</p>
+            <p>Asientos: {{avion.Asientos}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Añadir Avión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label for="aerolinea" class="grey-text">Selecciona Aerolínea</label>
+          <select [(ngModel)]="idAerolineaSeleccionada" [ngModelOptions]="{standalone:true}"
+                  class="form-control" name="" id="aerolinea">
+            <option value={{aerolinea.idAerolinea}}
+                    *ngFor="let aerolinea of aerolineas">
+              {{aerolinea.nombreAerolinea}}
+            </option>
+          </select>
+          <br>
+          <label for="asientos" class="grey-text">Asientos</label>
+          <input [(ngModel)]="asientos" [ngModelOptions]="{standalone:true}" type="Number" id="asientos"
+                 placeholder="Introduce el número de asientos." class="form-control">
+          <br>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-indigo" (click)="crearAvion()" data-dismiss="modal" type="submit">Añadir Avión
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

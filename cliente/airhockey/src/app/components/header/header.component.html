@@ -1,0 +1,47 @@
+<div *ngIf="peticion.logueado == true">
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar default-color">
+    <a class="navbar-brand" routerLink="['/home']">AIRHOCKEY</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-3"
+            aria-controls="navbarSupportedContent-3" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" routerLink="['/home']" routerLinkActive="active">
+          <a class="nav-link waves-effect waves-light">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLink]="['/contacto']">
+          <a class="nav-link waves-effect waves-light">Contactanos</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fa fa-user"></i>
+            <span>{{peticion.usuario.nombreUsuario}}</span>
+          </a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
+            <a class="dropdown-item waves-effect waves-light" routerLinkActive="active"
+               [routerLink]="['/misVuelos/vuelosActuales']"><i class="fa fa-plane"></i>
+
+              Mis viajes</a>
+            <a class="dropdown-item waves-effect waves-light" routerLinkActive="active" [routerLink]="['/my-count']"><i
+              class="fa fa-cog" aria-hidden="true"></i>
+              Datos de la cuenta</a>
+            <a class="dropdown-item waves-effect waves-light" (click)="cerrarSesion()"><i class="fa fa-times-circle-o"
+                                                                                          aria-hidden="true"></i> Cerrar
+              sesión</a>
+            <a *ngIf="peticion.usuario.supervisor == 1" routerLinkActive="active"
+               class="dropdown-item waves-effect waves-light"
+               [routerLink]="['/C.C.Cuentas/home']"><i
+              class="fa fa-user-secret" aria-hidden="true"></i> Gestionar
+              empresa.</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

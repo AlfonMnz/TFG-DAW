@@ -1,0 +1,27 @@
+<div class="card card-outline card-warning">
+  <div class="card-header">
+    Próximos viajes
+  </div>
+  <div class="card-body">
+    <div class="text-center" *ngIf="vuelosUser.length == 0">
+      <p>:( No tienes viajes pendientes, ve a la página principal para ver los vuelos disponibles.</p>
+      <a class="btn peach-gradient" [routerLink]="['/home']"><i
+        class="fa fa-house left"></i> Ir al Home</a>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let vuelo of vuelosUser">
+        <p>Origen: {{vuelo.Origen}} </p>
+        <p>Destino: {{vuelo.Destino}} </p>
+        <p>Fecha: {{vuelo.HoraSalida}}</p>
+      </li>
+    </ul>
+    <!--<div *ngIf="ticketsUsers.length == 0">
+      <p>
+        Parece que no tienes viajes próximos
+      </p>
+      <button class="btn btn-info">
+        Explora los vuelos
+      </button>
+    </div>-->
+  </div>
+</div>

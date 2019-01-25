@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <div class="sidebar">
+
+
+          <nav class="mt-5 pt-5">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <li class="nav-item">
+                <a [routerLink]="['/C.C.Cuentas/home']" routerLinkActive="active" class="nav-link">
+                  <i class="nav-icon fa fa-home"></i>
+                  <p>
+                    Inicio
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a [routerLink]="['/C.C.Cuentas/usuarios']" routerLinkActive="active" class="nav-link">
+                  <i class="nav-icon fa fa-user"></i>
+                  <p>
+                    Usuarios
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a [routerLink]="['/C.C.Cuentas/vuelos']" routerLinkActive="active" class="nav-link">
+                  <i class="nav-icon fa fa-suitcase" aria-hidden="true"></i>
+                  <p>
+                    Vuelos
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a [routerLink]="['/C.C.Cuentas/aviones']" routerLinkActive="active" class="nav-link">
+                  <i class="nav-icon fa fa-plane"></i>
+                  <p>
+                    Aviones
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a [routerLink]="['/C.C.Cuentas/aerolineas']" routerLinkActive="active" class="nav-link">
+                  <i class="nav-icon fa fa-space-shuttle" aria-hidden="true"></i>
+                  <p>
+                    Aerolineas
+                  </p>
+                </a>
+              </li>
+
+            </ul>
+          </nav>
+
+        </div>
+
+      </aside>
+    </div>
+    <div class="col-10 pt-5 mt-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

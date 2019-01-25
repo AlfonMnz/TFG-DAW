@@ -1,0 +1,35 @@
+<div class="container pt-5 mt-5">
+  <div class="row" *ngIf="success">
+    <div class="mx-3 w-100 alert alert-success" role="alert">
+      Tu duda se ha enviado correctamente, revisa tu correo para estar pendiente de nuestra respuesta!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <p class="h4 text-center mb-4">Contacta con el soporte técnico de AirHockey</p>
+
+
+        <label for="nameUser" class="grey-text">Asunto del mensaje</label>
+        <input [(ngModel)]="Asunto" [ngModelOptions]="{standalone:true}" type="text" id="nameUser"
+               class="form-control">
+        <br>
+        <div class="md-form">
+          <textarea [(ngModel)]="textoMensaje" type="text" id="message" name="message" rows="2"
+                    class="form-control md-textarea"></textarea>
+          <label for="message">Duda o mensaje</label>
+        </div>
+        <br>
+
+
+        <div class="text-center mt-4">
+          <button class="btn btn-indigo" (click)="enviarMensaje()" data-dismiss="modal">Enviar mensaje</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

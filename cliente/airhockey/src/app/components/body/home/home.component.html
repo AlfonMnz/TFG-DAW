@@ -1,0 +1,157 @@
+<div class="container">
+  <!--Jumbotron-->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-image"
+           style="background-image: url(https://www.scienceandnonduality.com/wp-content/uploads/2014/10/Japan_Miyajima.jpg);">
+        <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+          <div class="py-5">
+
+            <h2 class="card-title pt-3 mb-5 font-bold">Bienvenid@ {{peticion.usuario.nombreUsuario}} ¿List@ para
+              viajar?</h2>
+            <p class="px-5 pb-4">Comienza buscando un vuelo que te agrade</p>
+            <a class="btn peach-gradient" data-toggle="modal" data-target="#exampleModalCenter"><i
+              class="fa fa-plane left"></i> Buscar viaje</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="success">
+    <div class="mx-3 w-100 alert alert-success" role="alert">
+      Se ha comprado el billete satisfactoriamente y ahora está en tu cuenta, ve al apartado mis viajes para verlo
+      <button type="button" (click)="success=false" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="errorFecha">
+    <div class="mx-3 w-100 alert alert-danger" role="alert">
+      La fecha es anterior a la actual.
+      <button type="button" (click)="errorFecha=false" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="errorNoVuelos">
+    <div class="mx-3 w-100 alert alert-danger" role="alert">
+      No se encuentran vuelos :'(
+      <button type="button" (click)="errorNoVuelos=false" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="errorBilletes">
+    <div class="mx-3 w-100 alert alert-danger" role="alert">
+      No hay tantos billetes
+      <button type="button" (click)="errorBilletes=false" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="busqueda">
+    <div class="col-12">
+      <div class="card card-info card-outline">
+        <div class="card-header">
+          <h3 class="card-title">Estos son los vuelos que hemos encontrado</h3>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let vueloBuscado of vuelosBuscados">
+
+              <p>Origen: {{vueloBuscado.Origen}}</p>
+              <p>Destino: {{vueloBuscado.Destino}}
+                <button class="btn btn-info pull-right" (click)="verVuelo(vueloBuscado.idVuelo)">Ver más</button>
+              </p>
+
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="viendoVuelo">
+    <div class="col-12">
+      <div class="card card-info card-outline">
+        <div class="card-header">
+          <h3 class="card-title">{{vueloViendo.Origen}} --- {{vueloViendo.Destino}}</h3>
+        </div>
+        <div class="text-center" *ngIf="billetesDisponiblesForFly.length == 0">
+          <p>:( No tenemos billetes, si lo deseas prueba a </p>             <a class="btn peach-gradient"
+                                                                               data-toggle="modal"
+                                                                               data-target="#exampleModalCenter"><i
+          class="fa fa-plane left"></i> Buscar viaje</a>
+        </div>
+        <div *ngIf="billetesDisponiblesForFly.length>0" class="card-body">
+          Viaja desde {{vueloViendo.Origen}} Hasta {{vueloViendo.Destino}} por tan solo
+          {{billetesDisponiblesForFly[0].Precio}}€ Quedan {{billetesDisponiblesForFly.length}} billetes para este vuelo.
+          <button class="btn btn-info pull-right" (click)="comprarBilletes()">Comprar
+            Billetes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-info card-outline">
+        <div class="card-header">
+          <h3 class="card-title">Echa un vistazo a nuestros vuelos</h3>
+        </div>
+        <div class="card-body">
+
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let vuelo of vuelos | paginate: {itemsPerPage: 5, currentPage: p}">
+              {{vuelo.Origen}} --- {{vuelo.Destino}}
+              <button class="btn btn-info pull-right" (click)="verVuelo(vuelo.idVuelo)">Ver más</button>
+            </li>
+          </ul>
+          <pagination-controls (pageChange)="p =$event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Buscar viaje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <p class="h4 text-center mb-4">Busca Vuelos</p>
+
+
+          <label for="email" class="grey-text">Salida</label>
+          <input [(ngModel)]="Salida" [ngModelOptions]="{standalone:true}" type="email" id="email"
+                 class="form-control">
+
+          <br>
+          <label for="nameUser" class="grey-text">Destino</label>
+          <input [(ngModel)]="Destino" [ngModelOptions]="{standalone:true}" type="text" id="nameUser"
+                 class="form-control">
+
+          <br>
+
+
+          <label for="fecha_salida" class="grey-text">Fecha de salida</label>
+          <input class="form-control" [(ngModel)]="fecha_salida" [ngModelOptions]="{standalone:true}" type="date"
+                 id="fecha_salida">
+          <br>
+          <div class="text-center mt-4">
+            <button class="btn btn-indigo" (click)="buscarVuelos()" data-dismiss="modal">Buscar Vuelo</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

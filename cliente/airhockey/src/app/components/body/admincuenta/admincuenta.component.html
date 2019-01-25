@@ -1,0 +1,50 @@
+<div class="pt-3 col-4 offset-md-4 offset-lg-4 mt-5">
+  <div class="row" *ngIf="fallo">
+    <div class="alert alert-danger" role="alert">
+      <strong>Error</strong> el correo ya existe.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="errorNada">
+    <div class="mx-3 w-100 alert alert-danger" role="alert">
+      No tiene nada, stap, si queires volver a la página inicial dale a HOME
+      <button type="button" (click)="errorNada=false" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <form (submit)="cambiarDatos()">
+        <p class="h4 text-center mb-4">Cambiar datos Cuenta</p>
+
+
+        <label for="email" class="grey-text">Correo electrónico</label>
+        <input [(ngModel)]="newmail" [ngModelOptions]="{standalone:true}" type="email" id="email"
+               class="form-control">
+
+        <br>
+        <label for="nameUser" class="grey-text">Nombre de usuario</label>
+        <input [(ngModel)]="newusername" [ngModelOptions]="{standalone:true}" type="text" id="nameUser"
+               class="form-control">
+
+        <br>
+
+
+        <label for="password" class="grey-text">Nueva Contraseña</label>
+        <input [(ngModel)]="newpassword" [ngModelOptions]="{standalone:true}" type="password" id="password"
+               class="form-control">
+
+        <div class="text-center mt-4">
+          <button class="btn btn-indigo" type="submit">Cambiar Datos</button>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <p>Como es gratis no hay pa actualizar la forma de pago, somos muy majos</p>
+    </div>
+  </div>
+
+</div>

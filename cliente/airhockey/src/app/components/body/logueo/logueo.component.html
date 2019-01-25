@@ -1,0 +1,36 @@
+<div class="col-4 offset-md-4 offset-lg-4 mt-5">
+  <div class="row" *ngIf="fallo">
+    <div class="alert alert-danger" role="alert">
+      Error, has introducido mal tu correo o tu contraseña, por favor revise los campos.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <form (submit)="iniciarSesion()">
+        <p class="h4 text-center mb-4">Logueate como usuario</p>
+
+
+        <label for="loginEmail" class="grey-text">Tu correo</label>
+        <input [(ngModel)]="email" [ngModelOptions]="{standalone:true}" type="email" id="loginEmail"
+               class="form-control">
+
+        <br>
+
+
+        <label for="loginPassword" class="grey-text">Tu contraseña </label>
+        <input [(ngModel)]="password" [ngModelOptions]="{standalone:true}" type="password" id="loginPassword"
+               class="form-control">
+
+        <div class="text-center mt-4">
+          <button class="btn btn-indigo" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <strong>¿No tienes cuenta?<a [routerLink] = "['/registro']"> Regístrate aquí</a></strong>
+    </div>
+  </div>
+</div>

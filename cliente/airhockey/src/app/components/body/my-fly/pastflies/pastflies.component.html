@@ -1,0 +1,17 @@
+<div class="card card-warning card-outline">
+  <div class="card-header">
+    Viajes Pasados
+  </div>
+  <div class="card-body">
+    <div class="text-center" *ngIf="vuelosUser.length == 0">
+      <p>:( No tienes viajes realizados, ve a la página principal para ver los vuelos disponibles.</p>
+      <a class="btn peach-gradient" [routerLink]="['/home']"><i
+        class="fa fa-house left"></i> Ir al Home</a>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let vuelo of vuelosUser">
+        {{vuelo.Origen}} -- {{vuelo.Destino}} a las {{vuelo.HoraSalida}}
+      </li>
+    </ul>
+  </div>
+</div>

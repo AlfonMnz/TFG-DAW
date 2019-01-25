@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-info">
+        <i class="fa fa-space-shuttle"></i>
+      </span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total Aerolineas</span>
+        <span class="info-box-number">{{aerolineas.length}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="card card-info card-outline">
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fa fa-tab"></i>
+          Aerolineas
+        </h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-toggle="modal" data-target="#exampleModalCenter">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="list-group" *ngFor="let aerolinea of aerolineas">
+          <li class="list-group-item">{{aerolinea.nombreAerolinea}}
+            <button class="btn btn-info pull-right" data-target="#exampleModalCenter2" data-toggle="modal"
+                    (click)="editarAerolinea(aerolinea.idAerolinea)">Editar
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Añadir Aerolinea</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+
+          <label for="asientos" class="grey-text">Nombre de la aerolinea</label>
+          <input [(ngModel)]="nombreAerolinea" [ngModelOptions]="{standalone:true}" type="text" id="asientos"
+                 placeholder="Introduce el nombre de la nueva aerolinea." class="form-control">
+          <br>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-indigo" (click)="crearAerolinea()" data-dismiss="modal" type="submit">Añadir
+              Aerolinea
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle2">Editar aerolinea</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label for="asientos2" class="grey-text">Nombre de la aerolinea</label>
+          <input [(ngModel)]="nuevonombreAerolinea" [ngModelOptions]="{standalone:true}" type="text" id="asientos2"
+                 value="{{aerolineaAEditar.nombreAerolinea}}" class="form-control">
+          <br>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-indigo" (click)="mandarEditarAerolinea()" data-dismiss="modal" type="submit">Editar
+              Aerolinea
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
